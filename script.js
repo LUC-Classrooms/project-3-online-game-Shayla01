@@ -1,6 +1,6 @@
 /**
  * Project 3 versions 0-4 - 2D Web Game
- * Name:
+ * Name: Shayla Salvatori
  * 
  * Use this template to get started creating a simple 2D game for the web using P5.js. 
  */
@@ -52,5 +52,13 @@ function gameOver() {
 function mousePressed() {
 
   console.log("click!");
+  if(gameState == "splash"){
+    gameState = "play"; 
+  } else if (gameState == "play") {
+    gameState = gameOver;
+  } else if (gameState == "gameOver"){
+    gameState = "splash";
+  }
+  console.log(gameState);
 
 }
