@@ -6,10 +6,13 @@
  */
 
 var gameState = "splash";
+var player1;
 
 function setup() {
 
   createCanvas(600, 400);
+  player1 = new Player(width/2, height * 7/8); 
+  console.log(player1);
 
 }
 
@@ -52,6 +55,9 @@ function play() {
   textAlign(CENTER);
   textSize(16);
   text("This is where the Game happens", width / 2, height / 2);
+ //player1.x = mouseX;
+ player1.y = mouseY;
+  player1.display();
 
 }
 
