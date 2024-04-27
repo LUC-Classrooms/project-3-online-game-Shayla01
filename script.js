@@ -11,6 +11,7 @@ var gameTimer; // version 2, game timer
 var testBox; // version 3
 var dropTimer; // version 3, timer for mushrooms 
 var mushrooms = new Array(0); // version 3, empty array, mushrooms array that drops 
+var score = 0; //score and value 
 
 function setup() { // setup function 
 
@@ -90,17 +91,21 @@ function play() { // play function
 
       if(mushrooms[i].y > height) {
         mushrooms.splice(i, 1);// remove mushroom from array when it is off screen 
+        score ++; //adds to score if there is a collison between basket and mushroom 
       } // end of if statement for mushroom removal 
 
       let d = dist(mushrooms[i].x, mushrooms[i].y, player1.x, player1.y); // collison 
       if(d < 50){
         mushrooms.splice(i, 1); // when the mushroom collides with the basket it is removed from the array 
+        score --; // lose a point in the score when you miss a mushroom 
       } // end of if function 
 
     } // end of for loop 
 
+  textAlign(LEFT); // text is displayed on the left half of the screen 
   text("elapsed time: " + gameTimer.elapsedTime, width/2, 100); // displays timer countdown on screen 
-
+  text("Score: " + score, 20, 40) // score and where it is displayed (under the elapsed time on the left)
+  
 } // end of play function 
 
 function gameOver() { // game over function 
@@ -110,6 +115,7 @@ function gameOver() { // game over function
   textAlign(CENTER); // text placement 
   textSize(16); // text size 
   text("Game Over!", width / 2, height / 2); // text display and placement 
+  text("Your Final Score: " + score, width/2, height * 2/3); // displays final score when game ends 
 }
 
 function mousePressed() { // mouse pressed function 
@@ -118,10 +124,13 @@ function mousePressed() { // mouse pressed function
   if(gameState == "splash"){ 
     gameState = "play"; // play screen 
     gameTimer.start(); // game timer 
-    dropTimer.start(); // mushroom timer 
-  } else if (gameState == "play") {
+    dropTimer.start(); // mushroom timer
+    score = 0; // reset the score at the end of the game 
+  } 
+  else if (gameState == "play") {
     //gameState = "gameOver";
-  } else if (gameState == "gameOver"){
+  } 
+  else if (gameState == "gameOver"){
     gameState = "splash";
   }
   console.log(gameState); // show game state in console 
