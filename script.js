@@ -1,7 +1,7 @@
 /**
  * Project 3 versions 0-4 - 2D Web Game
  * Name: Shayla Salvatori
- *
+ * April 28th, 2024
  * Use this template to get started creating a simple 2D game for the web using P5.js. 
  */
 
@@ -9,16 +9,16 @@ var gameState = "splash"; // version 0
 var player1; // version 1
 var gameTimer; // version 2
 
-function setup() {
+function setup() { // setup function 
 
-  createCanvas(600, 400);
+  createCanvas(600, 400); // create canvas and size 
   player1 = new Player(width/2, height * 7/8); // player constructor and placement 
-  console.log(player1);
+  console.log(player1); // display player 1 in console 
 
   gameTimer = new Timer(5000); //timer and how long it runs (in milliseconds)
-  console.log(gameTimer); 
+  console.log(gameTimer); // display game timer in console 
 
-}
+} // end of setup function 
 
 function draw() { // draw function 
   background(200);// background color 
@@ -37,7 +37,7 @@ switch (gameState) {
     gameOver();
     break;
   default : 
-    console.log ("no match! check your mousePressed function");
+    console.log ("no match! check your mousePressed function"); // display in console 
 } // end of game state 
 
 } // end of draw function 
@@ -61,7 +61,7 @@ function play() { // play function
   text("This is where the Game happens", width / 2, height / 2); // text and placement 
  //player1.x = mouseX;
  player1.y = mouseY; // basket movement horozontally on the screen 
-  player1.display();
+  player1.display(); // display player 1
   
   if(gameTimer.isFinished()){
     gameState = "gameOver"; // game ends when the timer runs out 
@@ -91,6 +91,6 @@ function mousePressed() { // mouse pressed function
   } else if (gameState == "gameOver"){
     gameState = "splash";
   }
-  console.log(gameState);
+  console.log(gameState); // show game state in console 
 
 } // end of mouse pressed function 
