@@ -6,17 +6,23 @@
  */
 
 var gameState = "splash"; // version 0
-var player1; // version 1
-var gameTimer; // version 2
+var player1; // version 1, player, which is the basket 
+var gameTimer; // version 2, game timer 
+var testBox; // version 3
+var dropTimer; // version 3, timer for mushrooms 
+var mushrooms = new Array(0); // version 3, empty array, mushrooms array that drops 
 
 function setup() { // setup function 
 
   createCanvas(600, 400); // create canvas and size 
   player1 = new Player(width/2, height * 7/8); // player constructor and placement 
-  console.log(player1); // display player 1 in console 
+  console.log(player1); // display player 1 definition in console 
+  testBox = new Box(width/2, height/3); // test box object and placement 
 
-  gameTimer = new Timer(5000); //timer and how long it runs (in milliseconds)
+  gameTimer = new Timer(20000); //timer and how long it runs (in milliseconds); 20 seconds 
   console.log(gameTimer); // display game timer in console 
+  dropTimer = new Timer(1000); // timer for mushroom drop (in milliseconds); 1 second 
+  
 
 } // end of setup function 
 
@@ -50,6 +56,9 @@ function splash() { // splash function
   text("Let's Play a Game!", width / 2, height / 2); // text and placement 
   textSize(12); // text size 
   text("(click the mouse to continue)", width / 2, height / 2 + 30); // text and placement 
+  testBox.display(); // test box display 
+  testBox.spin(); // mushrooms spin on the canvas 
+  //testBox.move(); // mushrooms drop off the canvas vertically 
 } // end of splash function 
 
 function play() { // play function 
@@ -66,6 +75,29 @@ function play() { // play function
   if(gameTimer.isFinished()){
     gameState = "gameOver"; // game ends when the timer runs out 
   } // end of timer function 
+
+  if(dropTimer.isFinished()){
+    let m = new Box(random(width), -40);
+    mushrooms.push(m); // add m to the array 
+    dropTimer.start(); //when the drop timer is finished, it adds a new object to the array 
+    console.log(m); // display m definition in the console 
+    }
+
+    for(let i = 0; i < mushrooms.length; i ++){
+      mushrooms[i].display(); //mushroom display 
+      mushrooms[i].move(); // mushroom movement 
+      mushrooms[i].spin(); // mushrooms spinning
+
+      if(mushrooms[i].y > height) {
+        mushrooms.splice(i, 1);// remove mushroom from array when it is off screen 
+      } // end of if statement for mushroom removal 
+
+      let d = dist(mushrooms[i].x, mushrooms[i].y, player1.x, player1.y); // collison 
+      if(d < 50){
+        mushrooms.splice(i, 1); // when the mushroom collides with the basket it is removed from the array 
+      } // end of if function 
+
+    } // end of for loop 
 
   text("elapsed time: " + gameTimer.elapsedTime, width/2, 100); // displays timer countdown on screen 
 
@@ -84,8 +116,9 @@ function mousePressed() { // mouse pressed function
 
   console.log("click!");
   if(gameState == "splash"){ 
-    gameState = "play"; 
-    gameTimer.start();
+    gameState = "play"; // play screen 
+    gameTimer.start(); // game timer 
+    dropTimer.start(); // mushroom timer 
   } else if (gameState == "play") {
     //gameState = "gameOver";
   } else if (gameState == "gameOver"){
