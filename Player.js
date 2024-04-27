@@ -30,12 +30,14 @@ function Player(tempX, tempY) {
     //draw the triangle:
     //triangle(x1, y1, x2, y2, x3, y3);
     //or draw a complex polygon
-    beginShape();
-    vertex(x1, y1);
-    vertex(x2, y2);
-    vertex(x3, y3);
-    endShape();
-    // uncomment the next two lines to see the circle
+    
+    beginShape(); // basket
+   // vertex(x1, y1);
+   // vertex(x2, y2);
+   // vertex(x3, y3);
+   endShape();
+   
+   // uncomment the next two lines to see the circle
     // noFill();
     // ellipse(0, 0, this.diam, this.diam);
 

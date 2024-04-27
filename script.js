@@ -25,7 +25,7 @@ function setup() { // setup function
   dropTimer = new Timer(1000); // timer for mushroom drop (in milliseconds); 1 second 
   
 
-} // end of setup function 
+}// end of setup function 
 
 function draw() { // draw function 
   background(200);// background color 
@@ -69,8 +69,8 @@ function play() { // play function
   textAlign(CENTER); // text on screen 
   textSize(16); // text size 
   text("This is where the Game happens", width / 2, height / 2); // text and placement 
- //player1.x = mouseX;
- player1.y = mouseY; // basket movement horozontally on the screen 
+ player1.x = mouseX;// basket movement horozontally on the screen 
+ //player1.y = mouseY; 
   player1.display(); // display player 1
   
   if(gameTimer.isFinished()){
