@@ -1,7 +1,7 @@
 function Player(tempX, tempY) {
   // properties
-  this.x = tempX;
-  this.y = tempY;
+  this.x = width/2;
+  this.y = height/3;
   this.diam = 50;
   this.angle = 0;
 
