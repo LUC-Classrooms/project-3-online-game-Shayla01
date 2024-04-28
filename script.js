@@ -1,7 +1,7 @@
 /**
  * Project 3 versions 0-4 - 2D Web Game
  * Name: Shayla Salvatori
- * April 28th, 2024
+ * 
  * Use this template to get started creating a simple 2D game for the web using P5.js. 
  */
 
