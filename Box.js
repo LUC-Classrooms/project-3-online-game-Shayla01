@@ -13,7 +13,7 @@ function Box(_x, _y){
     translate(this.x - 300, this.y -200);
 
     rectMode(CENTER);
-    fill(this.boxColor);
+    //fill(this.boxColor);
     //rect(0, 0, 40); // 40px square
     
     //mushroom 
